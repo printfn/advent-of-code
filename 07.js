@@ -603,7 +603,7 @@ let test = [
 ["dark violet", "bags contain", []]];
 
 let bagColors = ["shiny gold"];
-let prevLen = -1;
+let prevLen = 0;
 while (true) {
     for (let rule of data) {
         if (bagColors.includes(rule[0])) {
@@ -631,12 +631,10 @@ function contents(bag) {
 }
 
 function recurse(bag) {
-    let x = contents(bag);
-    if (x.length == 0) return 1;
     let count = 0;
-    for (let pair of x) {
-        count += pair[0] * recurse(pair[1]);
+    for (let pair of contents(bag)) {
+        count += pair[0] * (1 + recurse(pair[1]));
     }
-    return count + 1;
+    return count;
 }
-console.log(recurse("shiny gold") - 1);
+console.log(recurse("shiny gold") - 0);
