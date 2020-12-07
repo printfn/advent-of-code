@@ -1,4 +1,4 @@
-const list = [1470,
+const list = new Set([1470,
 1577,
 1054,
 1962,
@@ -197,7 +197,7 @@ const list = [1470,
 1373,
 1911,
 1282,
-1306];
+1306]);
 
 outer: for (let i of list) {
     for (let j of list) {
@@ -210,11 +210,9 @@ outer: for (let i of list) {
 
 outer: for (let i of list) {
     for (let j of list) {
-        for (let k of list) {
-            if (i + j + k == 2020) {
-                console.log(i * j * k);
-                break outer;
-            }
+        if (list.has(2020 - i - j)) {
+            console.log(i * j * (2020 - i - j));
+            break outer;
         }
     }
 }
