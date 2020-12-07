@@ -602,25 +602,25 @@ let test = [
 ["dark blue", "bags contain", [[2, "dark violet"]]],
 ["dark violet", "bags contain", []]];
 
-let bag_colors = ["shiny gold"];
-let prev_len = -1;
+let bagColors = ["shiny gold"];
+let prevLen = -1;
 while (true) {
     for (let rule of data) {
-        if (bag_colors.includes(rule[0])) {
+        if (bagColors.includes(rule[0])) {
             continue;
         }
         let allowed = rule[2].toString();
-        for (let c of bag_colors) {
-            if (allowed.includes(c) && !bag_colors.includes(rule[0])) {
-                bag_colors.push(rule[0]);
+        for (let c of bagColors) {
+            if (allowed.includes(c) && !bagColors.includes(rule[0])) {
+                bagColors.push(rule[0]);
             }
         }
     }
-    if (bag_colors.length == prev_len) {
-        console.log(prev_len - 1);
+    if (bagColors.length == prevLen) {
+        console.log(prevLen - 1);
         break;
     }
-    prev_len = bag_colors.length;
+    prevLen = bagColors.length;
 }
 
 function contents(bag) {
