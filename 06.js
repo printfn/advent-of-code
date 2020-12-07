@@ -2226,26 +2226,10 @@ console.log(result);
 
 result = 0;
 for (let group of groups) {
-    let questions = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-    let len = 26;
-    for (let person of group) {
-        let questions2 = [];
-        for (let q of person) {
-            if (!questions2.includes(q)) {
-                questions2.push(q);
-            }
-        }
-        for (let i = 0; i < questions.length; ++i) {
-            if (questions[i] == null) {
-                continue;
-            }
-            let q = questions[i];
-            if (!questions2.includes(q)) {
-                questions[i] = null;
-                --len;
-            }
+    for (let q of group[0]) {
+        if (group.every(person => person.includes(q))) {
+            ++result;
         }
     }
-    result += len;
 }
 console.log(result);

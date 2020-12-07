@@ -323,63 +323,33 @@ const input = [
 "..#....#..#...#...##.#.........",
 ".#.#.#....#..........#........."];
 
-let trees = 0;
-for (let i in input) {
-    let row = input[i];
-    let cell = row[(i * 3) % row.length];
-    if (cell == '#') {
-        trees++;
+function count(x, y) {
+    let trees = 0;
+    for (let i in input) {
+        if (i % y != 0) {
+            continue;
+        }
+        let row = input[i];
+        let cell = row[(i / y * x) % row.length];
+        if (cell == '#') {
+            trees++;
+        }
     }
+    return trees;
 }
-console.log(trees);
+
+console.log(count(3, 1));
 
 let treeCounts = [];
-trees = 0;
-for (let i in input) {
-    let row = input[i];
-    let cell = row[i % row.length];
-    if (cell == '#') {
-        trees++;
-    }
-}
-treeCounts.push(trees);
-trees = 0;
-for (let i in input) {
-    let row = input[i];
-    let cell = row[(i * 3) % row.length];
-    if (cell == '#') {
-        trees++;
-    }
-}
-treeCounts.push(trees);
-trees = 0;
-for (let i in input) {
-    let row = input[i];
-    let cell = row[(i * 5) % row.length];
-    if (cell == '#') {
-        trees++;
-    }
-}
-treeCounts.push(trees);
-trees = 0;
-for (let i in input) {
-    let row = input[i];
-    let cell = row[(i * 7) % row.length];
-    if (cell == '#') {
-        trees++;
-    }
-}
-treeCounts.push(trees);
-trees = 0;
-for (let i in input) {
-    if (i % 2 == 1) {
-        continue;
-    }
-    let row = input[i];
-    let cell = row[(i / 2) % row.length];
-    if (cell == '#') {
-        trees++;
-    }
-}
-treeCounts.push(trees);
-console.log(treeCounts.reduce((acc, cur) => acc * cur, 1));
+treeCounts.push(count(1, 1));
+treeCounts.push(count(3, 1));
+treeCounts.push(count(5, 1));
+treeCounts.push(count(7, 1));
+treeCounts.push(count(1, 2));
+
+console.log([
+    count(1, 1),
+    count(3, 1),
+    count(5, 1),
+    count(7, 1),
+    count(1, 2)].reduce((acc, cur) => acc * cur, 1));
