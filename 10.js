@@ -184,7 +184,6 @@ for (let res of results) {
         }
         if (input[res[res.length - 1] + 1] - prev > 3) continue;
         arrangements++;
-        //console.log(i.toString(2));
     }
     count *= arrangements;
 }
