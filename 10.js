@@ -177,23 +177,21 @@ for (let res of results) {
         while (binary.length < res.length) {
             binary = '0' + binary;
         }
-        let partialList = [input[res[0] - 1]];
+        let prev = input[res[0] - 1];
+        let skip = false;
         for (let j = 0; j < res.length; ++j) {
             if (binary[j] == '1') {
-                partialList.push(input[res[j]]);
+                if (input[res[j]] - prev > 3) {
+                    skip = true;
+                    break;
+                }
+                prev = input[res[j]];
             }
         }
-        partialList.push(input[res[res.length - 1] + 1]);
-        let skip = false;
-        for (let j = 0; j < partialList.length - 1; ++j) {
-            if (partialList[j + 1] - partialList[j] > 3) {
-                skip = true;
-                break;
-            }
-        }
-        if (!skip) {
-            arrangements++;
-        }
+        if (skip) continue;
+        if (input[res[res.length - 1] + 1] - prev > 3) continue;
+
+        arrangements++;
     }
     count *= arrangements;
 }
