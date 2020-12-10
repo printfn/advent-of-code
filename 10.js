@@ -172,26 +172,19 @@ let results = reduce(input);
 let count = 1;
 for (let res of results) {
     let arrangements = 0;
-    for (let i = 0; i < Math.pow(2, res.length); ++i) {
-        let binary = i.toString(2);
-        while (binary.length < res.length) {
-            binary = '0' + binary;
-        }
+    arrangement: for (let i = 0; i < Math.pow(2, res.length); ++i) {
         let prev = input[res[0] - 1];
-        let skip = false;
         for (let j = 0; j < res.length; ++j) {
-            if (binary[j] == '1') {
+            if ((i & (1 << j)) != 0) {
                 if (input[res[j]] - prev > 3) {
-                    skip = true;
-                    break;
+                    continue arrangement;
                 }
                 prev = input[res[j]];
             }
         }
-        if (skip) continue;
         if (input[res[res.length - 1] + 1] - prev > 3) continue;
-
         arrangements++;
+        //console.log(i.toString(2));
     }
     count *= arrangements;
 }
