@@ -153,7 +153,7 @@ function reduce(list) {
     let options = [];
     let current = [];
     for (let i = 1; i < list.length - 1; ++i) {
-        if (list[i + 1] - list[i] == 3 && list[i] - list[i - 1] == 3) {
+        if (list[i + 1] - list[i] == 3 || list[i] - list[i - 1] == 3) {
             if (current.length > 0) {
                 options.push(current);
                 current = [];
