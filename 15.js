@@ -2,12 +2,12 @@ let list = [0,5,4,1,10,14,7];
 // list = [0,3,6];
 // list = [1,3,2];
 let listIdx = 0;
-let numberAges = [];
-let prevNumberAges = [];
+let numberAges = new Uint32Array(30000000);
+let prevNumberAges = new Uint32Array(30000000);
 
 let i = 0;
 let num = -1;
-while (i <= 30000000) {
+while (i < 30000000) {
     if (listIdx < list.length) {
         num = list[listIdx];
         numberAges[num] = i;
