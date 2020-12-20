@@ -1850,6 +1850,7 @@ function listCandidates(x, y) {
                     x: x,
                     y: y,
                 });
+                if (candidates.length >= 2) return candidates;
             }
         }
     }
