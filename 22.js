@@ -136,31 +136,45 @@ p2 = [
 // p1 = [9, 2, 6, 3, 1];
 // p2 = [5, 8, 4, 7, 10];
 
-function c(x) {
-    return [...x];
-}
+let outcomesCache = {};
 
 // true if p1 won
 function simulateGame(p1, p2) {
+    if (p1.length - 12 > p2.length) {
+        return true;
+    }
+    const op1 = [...p1];
+    const op2 = [...p2];
+    const json = JSON.stringify([op1, op2]);
+    let r = outcomesCache[json];
+    if (r) {
+        return r == 1 ? true : false;
+    }
     let prev = new Set();
     for (let r = 0; ; ++r) {
-        if (r % 24 == 0) {
-            if (prev.has(JSON.stringify([p1, p2]))) {
+        if (r > 50 && r % 24 == 0) {
+            let s = JSON.stringify([p1, p2]);
+            if (prev.has(s)) {
+                outcomesCache[json] = 1;
                 return true;
             }
-            prev.add(JSON.stringify([p1, p2]));
+            prev.add(s);
         }
-        if (p1.length == 0)
+        if (p1.length == 0) {
+            outcomesCache[json] = 2;
             return false;
-        if (p2.length == 0)
+        }
+        if (p2.length == 0) {
+            outcomesCache[json] = 1;
             return true;
+        }
 
         let top1 = p1.splice(0, 1)[0];
         let top2 = p2.splice(0, 1)[0];
         let winner;
         if (p1.length >= top1 && p2.length >= top2) {
             // recurse
-            winner = simulateGame(c(p1.slice(0, top1)), c(p2.slice(0, top2)));
+            winner = simulateGame(p1.slice(0, top1), p2.slice(0, top2));
         } else if (top1 > top2) {
             winner = true;
         } else {
