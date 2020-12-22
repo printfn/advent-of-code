@@ -137,7 +137,7 @@ p2 = [
 // p2 = [5, 8, 4, 7, 10];
 
 function c(x) {
-    return JSON.parse(JSON.stringify(x));
+    return [...x];
 }
 
 // true if p1 won
