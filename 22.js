@@ -144,10 +144,12 @@ function c(x) {
 function simulateGame(p1, p2) {
     let prev = new Set();
     for (let r = 0; ; ++r) {
-        if (prev.has(JSON.stringify([p1, p2]))) {
-            return true;
+        if (r % 24 == 0) {
+            if (prev.has(JSON.stringify([p1, p2]))) {
+                return true;
+            }
+            prev.add(JSON.stringify([p1, p2]));
         }
-        prev.add(JSON.stringify([p1, p2]));
         if (p1.length == 0)
             return false;
         if (p2.length == 0)
