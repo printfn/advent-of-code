@@ -1008,7 +1008,6 @@ for (let row of data) {
         case 'u': y -= row[1]; break;
         case 'd': y += row[1]; break;
         case 'f': x += row[1]; break;
-        case 'b': x -= row[1]; break;
     }
 }
 console.log(x * y);
