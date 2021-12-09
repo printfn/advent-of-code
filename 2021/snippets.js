@@ -1,6 +1,6 @@
 function mk2d(a, b) {
     let arr = [];
-    for (let i = 0; i < x; ++i) {
+    for (let i = 0; i < a; ++i) {
         let row = [];
         for (let j = 0; j < b; ++j) {
             row.push(0);
