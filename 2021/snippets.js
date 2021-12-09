@@ -14,6 +14,12 @@ function clone(obj) {
     return JSON.parse(JSON.stringify(obj));
 }
 
+function assert(res) {
+    if (!res) {
+        throw new Error('assertion failed');
+    }
+}
+
 // from https://stackoverflow.com/a/14853974
 Array.prototype.equals = function (array) {
     // if the other array is a falsy value, return
