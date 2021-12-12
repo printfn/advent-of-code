@@ -1,7 +1,3 @@
-function clone(obj) {
-    return JSON.parse(JSON.stringify(obj));
-}
-
 let input = [
 ['start','qs'],
 ['qs','jz'],
@@ -50,7 +46,6 @@ function step(current, prev) {
         ++count;
         return;
     }
-    prev = clone(prev);
     prev.push(current);
     for (let next of conn(current)) {
         if (next[0] == next[0].toLowerCase()) {
@@ -61,6 +56,7 @@ function step(current, prev) {
         }
         step(next, prev);
     }
+    prev.pop();
 }
 step('start', [], false);
 console.log(count);
@@ -71,7 +67,6 @@ function step2(current, prev, usedup) {
         ++count;
         return;
     }
-    prev = clone(prev);
     prev.push(current);
     for (let next of conn(current)) {
         if (next[0] == next[0].toLowerCase()) {
@@ -85,6 +80,7 @@ function step2(current, prev, usedup) {
         }
         step2(next, prev, usedup);
     }
+    prev.pop();
 }
 step2('start', [], false);
 console.log(count);
