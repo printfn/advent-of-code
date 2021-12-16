@@ -88,23 +88,23 @@ function parse() {
             idx += 15;
             res.totalsublen = totalsublen;
             let lensofar = 0;
-            let inners = [];
+            res.inners = [];
             while (lensofar < totalsublen) {
                 let before = idx;
-                inners.push(parse());
+                res.inners.push(parse());
                 lensofar += idx - before;
             }
-            res.value = maths(res.typeid, inners);
+            res.value = maths(res.typeid, res.inners);
         } else {
             let numsubs = parseInt(input.substring(idx, idx + 11), 2);
             res.numsubs = numsubs;
             idx += 11;
-            let inners = [];
+            res.inners = [];
             for (let i = 0; i < numsubs; ++i) {
                 let inner = parse();
-                inners.push(inner);
+                res.inners.push(inner);
             }
-            res.value = maths(res.typeid, inners);
+            res.value = maths(res.typeid, res.inners);
         }
     }
     return res;
