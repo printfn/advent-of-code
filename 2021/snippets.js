@@ -20,6 +20,12 @@ function assert(res) {
     }
 }
 
+function asserteq(a, b) {
+    if (a != b) {
+        throw new Error(`assertion failed, '${a}' != '${b}'`);
+    }
+}
+
 // from https://stackoverflow.com/a/14853974
 Array.prototype.equals = function (array) {
     // if the other array is a falsy value, return
