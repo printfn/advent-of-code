@@ -754,19 +754,31 @@ let scanners = {
 ]
 };
 
+const NO_ROT_IDX = 11;
+
+function roll(v) {
+    return [v[0],v[2],-v[1]];
+}
+
+function turn(v) {
+    return [-v[1],v[0],v[2]];
+}
+
 function scannerrot(id) {
     let outer = [];
     for (let [ox,oy,oz] of scanners[id]) {
         let result = [];
-        for (let [x,y,z] of permutator([ox,oy,oz])) {
-            result.push([x,y,z]);
-            result.push([-x,y,z]);
-            result.push([x,-y,z]);
-            result.push([-x,-y,z]);
-            result.push([x,y,-z]);
-            result.push([-x,y,-z]);
-            result.push([x,-y,-z]);
-            result.push([-x,-y,-z]);
+        let v = [ox, oy, oz];
+        for (let cycle of [0, 1]) {
+            for (let step of [0, 1, 2]) {
+                v = roll(v);
+                result.push(v);
+                for (let i of [0, 1, 2]) {
+                    v = turn(v);
+                    result.push(v);
+                }
+            }
+            v = roll(turn(roll(v)))
         }
         outer.push(result);
     }
@@ -788,7 +800,7 @@ function tryoverlap(id1, id2, scannerov) {
     if (noresults[[id2,id1]]) return;
     if (typeof scannerov == 'undefined') {
         scannerov = {
-            rotidx: 0,
+            rotidx: NO_ROT_IDX,
             dx: 0,
             dy: 0,
             dz: 0,
@@ -859,7 +871,7 @@ scannerovs[0] = {
     dx: 0,
     dy: 0,
     dz: 0,
-    rotidx: 0,
+    rotidx: NO_ROT_IDX,
 }
 let remaining_scanners = [];
 for (let i = 1; i <= 25; ++i) {
