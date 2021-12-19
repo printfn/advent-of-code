@@ -10,6 +10,24 @@ function mk2d(a, b) {
     return arr;
 }
 
+// compute the 24 possible orientations/rotations in 3d
+function rotations3d(x, y, z) {
+    return [
+        [x, y, z],    [-z, x, -y],
+        [-x, -z, -y], [z, -x, -y],
+        [z, -y, x],   [y, z, x],
+        [-z, y, x],   [-y, -z, x],
+        [-y, x, z],   [-x, -y, z],
+        [y, -x, z],   [x, z, -y],
+        [-z, -x, y],  [x, -z, y],
+        [z, x, y],    [-x, z, y],
+        [-x, y, -z],  [-y, -x, -z],
+        [x, -y, -z],  [y, x, -z],
+        [y, -z, -x],  [z, y, -x],
+        [-y, z, -x],  [-z, -y, -x]
+    ];
+}
+
 let scanners = {
 '0': [
 [65,91,116],
@@ -732,33 +750,10 @@ let scanners = {
 ]
 };
 
-const NO_ROT_IDX = 11;
-
-function roll(v) {
-    return [v[0],v[2],-v[1]];
-}
-
-function turn(v) {
-    return [-v[1],v[0],v[2]];
-}
-
 function scannerrot(id) {
     let outer = [];
-    for (let [ox,oy,oz] of scanners[id]) {
-        let result = [];
-        let v = [ox, oy, oz];
-        for (let cycle of [0, 1]) {
-            for (let step of [0, 1, 2]) {
-                v = roll(v);
-                result.push(v);
-                for (let i of [0, 1, 2]) {
-                    v = turn(v);
-                    result.push(v);
-                }
-            }
-            v = roll(turn(roll(v)))
-        }
-        outer.push(result);
+    for (let [x,y,z] of scanners[id]) {
+        outer.push(rotations3d(x, y, z));
     }
     let flipped = mk2d(outer[0].length, outer.length);
     for (let i = 0; i < outer[0].length; ++i) {
@@ -778,7 +773,7 @@ function tryoverlap(id1, id2, scannerov) {
     if (noresults[[id2,id1]]) return;
     if (typeof scannerov == 'undefined') {
         scannerov = {
-            rotidx: NO_ROT_IDX,
+            rotidx: 0,
             dx: 0,
             dy: 0,
             dz: 0,
@@ -849,7 +844,7 @@ scannerovs[0] = {
     dx: 0,
     dy: 0,
     dz: 0,
-    rotidx: NO_ROT_IDX,
+    rotidx: 0,
 }
 let remaining_scanners = [];
 for (let i = 1; i <= 25; ++i) {

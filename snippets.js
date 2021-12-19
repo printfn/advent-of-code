@@ -74,3 +74,21 @@ function permutator(inputArr) {
 
   return permute(inputArr);
 }
+
+// compute the 24 possible orientations/rotations in 3d
+function rotations3d(x, y, z) {
+    return [
+        [x, y, z],    [-z, x, -y],
+        [-x, -z, -y], [z, -x, -y],
+        [z, -y, x],   [y, z, x],
+        [-z, y, x],   [-y, -z, x],
+        [-y, x, z],   [-x, -y, z],
+        [y, -x, z],   [x, z, -y],
+        [-z, -x, y],  [x, -z, y],
+        [z, x, y],    [-x, z, y],
+        [-x, y, -z],  [-y, -x, -z],
+        [x, -y, -z],  [y, x, -z],
+        [y, -z, -x],  [z, y, -x],
+        [-y, z, -x],  [-z, -y, -x]
+    ];
+}
