@@ -92,3 +92,13 @@ function rotations3d(x, y, z) {
         [-y, z, -x],  [-z, -y, -x]
     ];
 }
+
+function draw2d(img) {
+    for (let i = 0; i < img.length; ++i) {
+        let row = '';
+        for (let j = 0; j < img[i].length; ++j) {
+            row += img[i][j];
+        }
+        console.log(row);
+    }
+}
