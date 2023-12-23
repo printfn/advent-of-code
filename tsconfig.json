@@ -1,8 +1,17 @@
 {
     "compilerOptions": {
         "target": "esnext",
-        "module": "esnext",
+        "module": "nodenext",
         "moduleResolution": "nodenext",
-        "lib": ["esnext"]
+        "lib": ["esnext"],
+
+        "strict": true,
+        "noImplicitAny": true,
+        "strictFunctionTypes": true,
+        "strictNullChecks": true,
+        "strictBindCallApply": true,
+        "strictPropertyInitialization": true,
+        "noImplicitThis": true,
+        "exactOptionalPropertyTypes": true,
     }
 }
