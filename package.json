@@ -5,7 +5,7 @@
     "main": "index.ts",
     "scripts": {
         "lint": "tsc --noEmit --project tsconfig.json",
-        "test": "node --import tsx/esm"
+        "test": "node --import tsx/esm ./index.ts"
     },
     "author": "",
     "type": "module",
