@@ -165,16 +165,9 @@ const sample = `
 #.....###...###...#...#
 #####################.#`.trim();
 
-/**
- * @param {number[][][][]} graph graph[y][x] = [[x, y, dist], ...]
- * @param {boolean[][]} seen
- * @param {number} x 
- * @param {number} y 
- * @param {number} dist 
- * @param {number} max_dist 
- * @returns new max_dist
- */
-function dfs(graph, seen, x, y, dist, max_dist) {
+type Edge = [number, number, number];
+
+function dfs(graph: Edge[][][], seen: boolean[][], x: number, y: number, dist: number, max_dist: number) {
     if (y == seen.length - 1) {
         return Math.max(max_dist, dist);
     }
@@ -188,46 +181,38 @@ function dfs(graph, seen, x, y, dist, max_dist) {
     return max_dist;
 }
 
-/**
- * @param {string} input 
- * @param {1 | 2} part 
- * @returns 
- */
-function solve(input, part) {
+function solve(input: string, part: 1 | 2) {
     const grid = input.split('\n').map(l => l.split(''));
-    const graph = [];
+    const graph: Edge[][][] = [];
     for (let y = 0; y < grid.length; ++y) {
-        let row = [];
+        let row: Edge[][] = [];
         for (let x = 0; x < grid[0].length; ++x) {
-            row.push(null);
+            row.push([]);
         }
         graph.push(row);
     }
     for (let y = 0; y < grid.length; ++y) {
         for (let x = 0; x < grid[0].length; ++x) {
             if (grid[y][x] === '#') continue;
-            let adj = null;
+            let adj: [number, number][] = [];
             switch (part === 1 ? grid[y][x] : '.') {
                 case '.':
-                    adj = [[0, 1], [0, -1], [1, 0], [-1, 0]];
+                    adj = [[x, y + 1], [x, y - 1], [x + 1, y], [x - 1, y]];
                     break;
                 case 'v':
-                    adj = [[0, 1]];
+                    adj = [[x, y + 1]];
                     break;
                 case '^':
-                    adj = [[0, -1]];
+                    adj = [[x, y - 1]];
                     break;
                 case '>':
-                    adj = [[1, 0]];
+                    adj = [[x + 1, y]];
                     break;
                 case '<':
-                    adj = [[-1, 0]];
+                    adj = [[x - 1, y]];
                     break;
             }
-            graph[y][x] = [];
-            for (const [dx, dy] of adj) {
-                let nx = x + dx;
-                let ny = y + dy;
+            for (const [nx, ny] of adj) {
                 if (nx < 0 || nx >= grid[0].length || ny < 0 || ny >= grid.length) continue;
                 if (grid[ny][nx] === '#') continue;
                 graph[y][x].push([nx, ny, 1]);
@@ -250,9 +235,9 @@ function solve(input, part) {
             }
         }
     }
-    let seen = [];
+    let seen: boolean[][] = [];
     for (let y = 0; y < grid.length; ++y) {
-        let row = [];
+        let row: boolean[] = [];
         for (let x = 0; x < grid[0].length; ++x) {
             row.push(false);
         }
@@ -263,7 +248,7 @@ function solve(input, part) {
     return answer;
 }
 
-console.log(solve(sample, 1));
+// console.log(solve(sample, 1));
 console.log(solve(input, 1));
-console.log(solve(sample, 2));
+// console.log(solve(sample, 2));
 console.log(solve(input, 2));

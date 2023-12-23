@@ -4,13 +4,15 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "",
     "type": "module",
     "license": "AGPL-3.0-or-later",
     "dependencies": {
-      "a-star": "^0.2.0"
+        "a-star": "^0.2.0"
+    },
+    "devDependencies": {
+        "tsx": "^4.7.0"
     }
-  }
-  
+}
