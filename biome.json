@@ -1,0 +1,21 @@
+{
+	"$schema": "https://biomejs.dev/schemas/1.4.0/schema.json",
+	"formatter": {
+		"indentStyle": "tab"
+	},
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": true
+		}
+	},
+	"files": {
+		"ignore": ["2019", "2020", "2021", "2022", "2023", "snippets.js"]
+	},
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "single",
+			"arrowParentheses": "asNeeded"
+		}
+	}
+}

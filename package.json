@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.ts",
     "scripts": {
-        "lint": "tsc --noEmit --project tsconfig.json",
+        "lint": "biome check . && tsc --noEmit --project tsconfig.json",
         "test": "node --import tsx/esm ./index.ts"
     },
     "author": "",
@@ -14,6 +14,7 @@
         "a-star": "^0.2.0"
     },
     "devDependencies": {
+        "@biomejs/biome": "^1.4.1",
         "@types/node": "^20.10.5",
         "tsx": "^4.7.0",
         "typescript": ">=5.3.3"

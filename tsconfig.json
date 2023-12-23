@@ -4,6 +4,8 @@
         "module": "nodenext",
         "moduleResolution": "nodenext",
         "lib": ["esnext"],
+        "noEmit": true,
+        "allowImportingTsExtensions": true,
 
         "strict": true,
         "noImplicitAny": true,

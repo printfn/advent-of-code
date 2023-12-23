@@ -1,4 +1,4 @@
-declare module "a-star" {
+declare module 'a-star' {
 	interface Options<T> {
 		/** The start node */
 		start: T;
@@ -14,7 +14,7 @@ declare module "a-star" {
 		 * [*admissible*](https://en.wikipedia.org/wiki/Admissible_heuristic),
 		 * meaning it must never overestimate the actual cost to get to an
 		 * end node.
-		 * 
+		 *
 		 * If the heuristic function also satisfies `h(x) <= d(x, y) + h(y)`
 		 * for every edge `x, y` of the graph, then the function is considered
 		 * [*consistent*](https://en.wikipedia.org/wiki/Consistent_heuristic).
@@ -23,7 +23,7 @@ declare module "a-star" {
 		 * the step cost of getting to `y` plus the estimated cost of reaching
 		 * the goal from `y`. This is also equivalent to the triangle
 		 * inequality.
-		 * 
+		 *
 		 * With a consistent heuristic, A* is guaranteed to find
 		 * an optimal path without processing any node more than once. */
 		heuristic: (node: T) => number;
@@ -33,9 +33,11 @@ declare module "a-star" {
 		timeout?: number | undefined;
 	}
 
-	export default function aStar<T>(options: Options<T>): {
-		status: 'success' | 'noPath' | 'timeout',
-		path: T[],
-		cost: number,
-	}
+	export default function aStar<T>(
+		options: Options<T>,
+	): {
+		status: 'success' | 'noPath' | 'timeout';
+		path: T[];
+		cost: number;
+	};
 }
