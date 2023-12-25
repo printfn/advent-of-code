@@ -1,9 +1,10 @@
 import { readFile } from 'fs/promises';
 import y2023d23 from './2023/23.ts';
 import y2023d24 from './2023/24.ts';
+import y2023d25 from './2023/25.ts';
 import { Challenge } from './types.ts';
 
-const y2023 = [/*y2023d23,*/ y2023d24];
+const y2023 = [/*y2023d23, y2023d24, */y2023d25];
 
 const tests: string[] = [];
 let allTests = false;
@@ -92,5 +93,5 @@ async function runChallenge(challenge: Challenge, year: number, day: number) {
 }
 
 for (const ch of y2023) {
-	await runChallenge(ch, 2023, 24);
+	await runChallenge(ch, 2023, 25);
 }

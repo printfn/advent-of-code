@@ -11,6 +11,7 @@
     "type": "module",
     "license": "AGPL-3.0-or-later",
     "dependencies": {
+        "@graph-algorithm/minimum-cut": "^2.0.0",
         "a-star": "^0.2.0"
     },
     "devDependencies": {
