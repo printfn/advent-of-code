@@ -5,7 +5,7 @@
     "main": "index.ts",
     "scripts": {
         "lint": "biome check . && tsc --noEmit --project tsconfig.json",
-        "test": "node --import tsx/esm ./index.ts"
+        "test": "node ./index.ts"
     },
     "author": "",
     "type": "module",
@@ -15,10 +15,9 @@
         "a-star": "^0.2.0"
     },
     "devDependencies": {
-        "@biomejs/biome": "^1.4.1",
+        "@biomejs/biome": "^2.3.8",
         "@types/a-star": "^0.2.0",
-        "@types/node": "^20.10.5",
-        "tsx": "^4.7.0",
-        "typescript": ">=5.3.3"
+        "@types/node": "^24.10.1",
+        "typescript": ">=5.9.3"
     }
 }

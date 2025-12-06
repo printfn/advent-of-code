@@ -2,7 +2,7 @@ import { readFile } from 'fs/promises';
 import y2023d23 from './2023/23.ts';
 import y2023d24 from './2023/24.ts';
 import y2023d25 from './2023/25.ts';
-import { Challenge } from './types.ts';
+import type { Challenge } from './types.ts';
 
 const y2023 = [/*y2023d23, y2023d24, */y2023d25];
 

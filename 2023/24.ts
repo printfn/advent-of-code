@@ -1,4 +1,4 @@
-import { Challenge } from '../types.ts';
+import type { Challenge } from '../types.ts';
 
 const sample = `19, 13, 30 @ -2,  1, -2
 18, 19, 22 @ -1, -1, -2
@@ -166,7 +166,7 @@ const day24bNoExternal = (input: string) => {
 			for (let y = -r; y < r + 1; y++) {
 				for (let z = -r; z < r + 1; z += 2 * r) {
 					const e = ef(x, y, z);
-                    if (e === undefined) continue;
+					if (e === undefined) continue;
 					if (!Number.isNaN(e)) {
 						if (minimumfound === undefined) {
 							xm = x;
@@ -187,7 +187,7 @@ const day24bNoExternal = (input: string) => {
 			for (let y = -r; y < r + 1; y += 2 * r) {
 				for (let z = -r; z < r + 1; z += 1) {
 					const e = ef(x, y, z);
-                    if (e === undefined) continue;
+					if (e === undefined) continue;
 					if (!Number.isNaN(e)) {
 						if (minimumfound === undefined) {
 							xm = x;
@@ -208,7 +208,7 @@ const day24bNoExternal = (input: string) => {
 			for (let y = -r; y < r + 1; y++) {
 				for (let z = -r; z < r + 1; z++) {
 					const e = ef(x, y, z);
-                    if (e === undefined) continue;
+					if (e === undefined) continue;
 					if (!Number.isNaN(e)) {
 						if (minimumfound === undefined) {
 							xm = x;
@@ -228,9 +228,9 @@ const day24bNoExternal = (input: string) => {
 		if (minimumfound !== undefined && minimumfound < 1) break;
 	}
 	const nums1 = linearSolve(0, 1, xm, ym, zm);
-    if (!nums1) {
-        throw new Error('failed to find solution');
-    }
+	if (!nums1) {
+		throw new Error('failed to find solution');
+	}
 	return nums1[0] + nums1[1] + nums1[2];
 };
 
@@ -270,7 +270,7 @@ function solve(input: string, part: 1 | 2) {
 		return count.toString();
 	}
 
-    // part 2 is too hard
+	// part 2 is too hard
 	return day24bNoExternal(input).toString();
 }
 
