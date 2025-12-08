@@ -1,4 +1,6 @@
 export type Challenge = {
+	year: number;
+	day: number;
 	solve: (input: string, part: 1 | 2) => string;
 	answer: [string, string];
 	samples: (

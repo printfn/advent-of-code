@@ -275,6 +275,8 @@ function solve(input: string, part: 1 | 2) {
 }
 
 const challenge: Challenge = {
+	day: 24,
+	year: 2023,
 	solve,
 	answer: ['13910', '618534564836937'],
 	samples: [{ sample, answer: '2', part: 1 }],
