@@ -4,10 +4,11 @@ import y2023d24 from './2023/24.ts';
 import y2023d25 from './2023/25.ts';
 import y2025d01 from './2025/01.ts';
 import y2025d02 from './2025/02.ts';
+import y2025d03 from './2025/03.ts';
 import type { Challenge } from './types.ts';
 
 const y2023 = [y2023d23, y2023d24, y2023d25];
-const y2025 = [y2025d01, y2025d02];
+const y2025 = [y2025d01, y2025d02, y2025d03];
 const all = [...y2023, ...y2025];
 
 const testNames: string[] = [];
